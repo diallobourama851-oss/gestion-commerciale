@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block contenu %}
+<div class="d-flex justify-content-between mb-3">
+  <h2>Produits</h2>
+  <a class="btn btn-primary" href="{{ url_for('ajouter_produit') }}">Ajouter un produit</a>
+</div>
+<table class="table table-striped">
+  <thead><tr><th>ID</th><th>Désignation</th><th>Prix de vente</th><th>Catégorie</th><th>Actions</th></tr></thead>
+  <tbody>
+  {% for p in produits %}
+    <tr>
+      <td>{{ p.id_produit }}</td>
+      <td>{{ p.designation }}</td>
+      <td>{{ p.prix_vente }}</td>
+      <td>{{ p.libelle }}</td>
+      <td>
+        <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('modifier_produit', id=p.id_produit) }}">Modifier</a>
+        <form method="post" action="{{ url_for('supprimer_produit', id=p.id_produit) }}" class="d-inline"
+              onsubmit="return confirm('Supprimer ce produit ?');">
+          <button class="btn btn-sm btn-outline-danger">Supprimer</button>
+        </form>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
