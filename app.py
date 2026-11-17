@@ -114,6 +114,19 @@ def supprimer_produit(id):
     executer("DELETE FROM PRODUIT WHERE id_produit=%s", (id,))
     return redirect(url_for("liste_produits"))
 
+# ---------- AUTRES MODULES (à compléter) ----------
+@app.route("/approvisionnements")
+def liste_approvisionnements():
+    return render_template("module.html", titre="Approvisionnements")
 
+
+@app.route("/ventes")
+def liste_ventes():
+    return render_template("module.html", titre="Ventes")
+
+
+@app.route("/depenses")
+def liste_depenses():
+    return render_template("module.html", titre="Dépenses")
 if __name__ == "__main__":
     app.run(debug=True)
